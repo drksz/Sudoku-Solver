@@ -10,31 +10,19 @@ bool SudokuSolve(int Grid[SUDOKU_ROW][SUDOKU_COL], int row_ind, int col_ind);
 
 //finds which subgrid a cell belongs to and checks that subgrid for duplicates
 bool CheckSubGrid(int Grid[SUDOKU_ROW][SUDOKU_COL], int row_ind, int col_ind, int val) {
+    int row_start = (row_ind / 3) * 3;
+    int col_start = (col_ind / 3) * 3;
 
-    int row_start = (row_ind / 3) * 3;              //formula for subgrid row bounds is flr(r/3)*3 for start and flr(r/3)*3+3 for end
-    int col_start = (col_ind / 3) * 3;              //same formula; as with row bounds flr(c/3)*3 for start and flr(c/3)*3+3 for end
-
-
-    for (int i = row_start; i < row_start + 3; i++) {         
-        for (int j = col_start; j < col_start + 3; j++) {     
-
-            if (i == row_ind && j == col_ind)   //skips the index position of the cell being evaluated since it's just zero each time it is being checked
-                continue;
-
-            if (isValidCell(Grid, i, j)) {
-
-                if (Grid[i][j] == val) {
-                    printf("\nSub-grid duplicate found!\n");
-                    
-                    return true;
-                }
+    for (int i = row_start; i < row_start + 3; i++) {
+        for (int j = col_start; j < col_start + 3; j++) {
+            if (Grid[i][j] == val && !(isValidCell(Grid, i, j))) {
+                printf("Sub-grid duplicate found!\n");
+                return true;
             }
-
         }
     }
 
     return false;
-
 }
 
 

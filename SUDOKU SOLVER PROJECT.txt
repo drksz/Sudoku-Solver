@@ -1,0 +1,45 @@
+SUDOKU SOLVER PROJECT
+
+Program description:
+
+-Solves a 9x9 Sudoku grid. A sudoku puzzle is solved by filling in all vacant cells with numbers such that no numbers are repeated in that particular row and column. 
+
+Planned program flow:
+
+1.) Input sudoku grid will be in a .txt file which the program will read. 
+2.) Each index position in the 9x9 2D array will be checked if it is filled or not.
+3.) If a vacant cell is found, put an integer onto that index position.
+4.) Iterate the whole row and column extending from that index position and check if the integer that has been filled in has duplicates in said row and column.
+5.) If there is no duplicate/the number is unique to that row & col, treat it as a solution to that cell. Otherwise, change the number and check for duplicates again.
+6.) If there are no solutions possible for a cell, print an error and exit the program.
+7.) Program ends when all index positions have been visited and filled. 
+
+
+Programming principle to be applied:
+-BACKTRACKING
+
+
+
+
+PLANNED FUNCTIONS TO BE USED:
+
+CheckSubGrid() - checks which subgrid does a specific cell belong to. This is to ensure that the solver does not fill in duplicated numbers in   
+		each subgrid.
+	       - compares the cell with its neighboring cells in the subgrid to see if there are duplicates. If there is a duplicate, return
+		false, else return true.
+		
+
+CheckRowCol() - checks the entire row and column relative to the cell being evaluated for duplicates. If a duplicate is found, return false, else
+		return true.
+
+SudokuSolve() - a recursive function called on each index in the 9x9 grid. Checks whether an index is vacant or not. If it is filled, skip the
+		cell. Else, fill in a number starting from 1 to 9. 
+		- Calls the CheckSubGrid() and CheckRowCol() functions to see if the number is already in the subgrid or in that row or column.
+		- if either of the 2 functions return false, replace the number and check using CheckSubGrid() and CheckRowCol() again. This
+		is where backtracking starts.
+
+
+
+
+
+
